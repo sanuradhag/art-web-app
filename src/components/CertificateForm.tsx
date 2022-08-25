@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import { Link } from "react-router-dom";
+
 import { Certificate } from "../interfaces/certificate";
 
 const CertificateForm = (props: CertificateFormProps): JSX.Element => {
@@ -19,7 +21,9 @@ const CertificateForm = (props: CertificateFormProps): JSX.Element => {
 		} else {
 			setHasError(false);
 			const data: Certificate = {
-				id: certificate?.id ? certificate.id : `${Math.floor(Math.random() * 1000)}`,
+				id: certificate?.id
+					? certificate.id
+					: `${Math.floor(Math.random() * 1000)}`,
 				title,
 				artistFirstName,
 				artistLastName,
@@ -114,12 +118,19 @@ const CertificateForm = (props: CertificateFormProps): JSX.Element => {
 					<span className="text-red-500">Fill all the required details</span>
 				)}
 
-				<button
-					className="h-10 w-50 bg-black text-white font-bold"
-					type="submit"
-				>
-					{certificate ? "Update" : "Add"}
-				</button>
+				<div className="flex w-full items-center justify-between">
+					<button
+						className="h-10 w-full bg-black text-white font-bold"
+						type="submit"
+					>
+						{certificate ? "Update" : "Add"}
+					</button>
+					<Link to={"/"} className='w-full ml-4'>
+						<div className="h-10 w-full bg-white text-black font-bold border-2 border-black text-center leading-9">
+							Cancel
+						</div>
+					</Link>
+				</div>
 			</form>
 		</div>
 	);
