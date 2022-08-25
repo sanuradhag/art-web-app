@@ -33,9 +33,9 @@ const CertificateList = (): JSX.Element => {
 	const [sorted, setSorted] = useState<boolean>(false);
 	const debouncedSearchTerm: string = useDebounce<string>(searchText, 1200);
 
-	const getCertificates = async (): Promise<void> => {
+	const getCertificates = (): void => {
 		setLoading(true);
-		setTimeout(() => {
+		setTimeout(async () => {
 			const data = await fetchCertificates();
 			const sortedArray = sortArray(data);
 			setCertificates(sortedArray);
