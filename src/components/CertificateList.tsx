@@ -12,7 +12,7 @@ import AZ from "../images/sort-a-z.svg";
 import ZA from "../images/sort-z-a.svg";
 
 const sortArray = (array: Certificate[]): Certificate[] => {
-  return array.sort((a: Certificate, b: Certificate) => {
+	return array.sort((a: Certificate, b: Certificate) => {
 		if (a.artistLastName > b.artistLastName) {
 			return 1;
 		}
@@ -21,7 +21,7 @@ const sortArray = (array: Certificate[]): Certificate[] => {
 		}
 		return 0;
 	});
-}
+};
 
 const CertificateList = (): JSX.Element => {
 	const [certificates, setCertificates] = useState<Certificate[]>([]);
@@ -35,14 +35,14 @@ const CertificateList = (): JSX.Element => {
 
 	const getCertificates = async (): Promise<void> => {
 		setLoading(true);
-		const data = await fetchCertificates();
-		const sortedArray = sortArray(data);
-		setCertificates(sortedArray);
-		setDisplayCertificates(sortedArray);
-		setSorted(true)
 		setTimeout(() => {
+			const data = await fetchCertificates();
+			const sortedArray = sortArray(data);
+			setCertificates(sortedArray);
+			setDisplayCertificates(sortedArray);
+			setSorted(true);
 			setLoading(false);
-		}, 1500);
+		}, 1800);
 	};
 
 	const filterData = (): void => {
